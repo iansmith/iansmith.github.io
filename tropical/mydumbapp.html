@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Dumb App</title>
+<style>
+body {
+background: #dddddd;
+}
+#canvas {
+margin: 20px;
+padding: 20px;
+background: #ffffff;
+border: solid 3px #fffacd;
+}
+</style>
+</head>
+<body>
+<h3>My Dumb App</h3>
+
+<ul>
+	<li>Outline of canvas object in yellow, background color of canvas is white. This is
+	controlled from the HTML level.</li>
+	<li>The root interactor bridges the HTML and tropical worlds.  It shifts its content inward by 5 pix, paints background melon colored 
+	and rounds its corners</li>
+	<li>DumbParent fills its upper left quadrant with cornsilk (sort of brownish) as well as showing
+	its border in same color.
+	Note that it tries to just do a simple filled rectangle but since its parent (the root interactor)
+	set the clipping path with rounded rects, the upper left remains rounded</li>
+	<li>Blue rectangles (royal blue and dodger blue) are instances of DumbChild. They just fill
+	their entiring bounding rect with a color.</li>
+	<li>The red circle is actually a composite.  The Portole type masks its child, whatever it
+	is, with an arc. We use a the same DumbLeaf as before, but the masking removes
+	the part outside the boundary of Porthole.</li>
+	<li>The blue squares and red circle respond clicking by switching from filled
+	to stroked.  Note that the clipping rect of the porthole on the round object
+	is pretty clearly shown.</li>
+	<li>The clickable items respond to mouse focus in the sense that they only
+	perform their switch if you click and release within their bounds.</li>
+</ul>
+
+<!--note: the canvas' "true" height/width includes the margin+border+padding -->
+<canvas id="canvas" width="400" height="300">
+Canvas not supported
+</canvas>
+
+    <script src="tropical_support.js"></script>
+    <script src="mydumbapp.js"></script>
+</body>
+</html>
