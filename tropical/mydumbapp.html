@@ -27,13 +27,15 @@ border: solid 3px #fffacd;
 	set the clipping path with rounded rects, the upper left remains rounded</li>
 	<li>Blue rectangles (royal blue and dodger blue) are instances of DumbChild. They just fill
 	their entiring bounding rect with a color.<br>
-	The blue rectangles respond to Click() so they only change if release inside their bounds
-	as well as mouse down inside their bounds.  They change from filled to stroked.</li>
-	<li>The icon in circle is actually a composite.  The Portole type masks its child, whatever it
-	is, with an arc. We use a the same IconLeaf as it's child, but the masking removes
-	the part outside the boundary of Porthole. <br> You can see that the icon is square
+	The blue rectangles respond to <code>Click()</code>so they only change *if* 
+	the mouse is released inside their bounds (plus of course starting inside their
+	bounds)  They change from filled to stroked.</li>
+	<li>The icon in circle is actually a composite.  The Porthole type masks its child, whatever it
+	is, with an arc (360 degrees in this case). We use a the IconLeaf as it's child, 
+	but the masking removes the part outside the boundary of Porthole. <br> You can see that the icon is square
 	by looking at the HTML of this page and seeing the hidden icon at the bottom. It
-	needs to be in the page to be drawn but we hide it from the HTML viewer.</li>
+	must be in the page to be drawn inside a tropical interactor, but we hide it 
+	from the HTML viewer.</li>
 	<li>You can drag the icon around. It defaults to picking only itself,
 	not its children.  You may want to place it partially obscuring a blue rectangle
 	and observing the effect on the click behavior of the rectangle.</li>
