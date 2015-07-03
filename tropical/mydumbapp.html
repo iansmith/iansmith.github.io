@@ -20,30 +20,40 @@ border: solid 3px #fffacd;
 <ul>
 	<li>Outline of canvas object in yellow, background color of canvas is white. This is
 	controlled from the HTML level.</li>
-	<li>The root interactor bridges the HTML and tropical worlds.  It shifts its content inward by 5 pix, paints background melon colored 
-	and rounds its corners</li>
+	<li>The root interactor bridges the HTML and tropical worlds.  It shifts its content inward by 5 pix, paints background melon colored and rounds its corners</li>
 	<li>DumbParent fills its upper left quadrant with cornsilk (sort of brownish) as well as showing
-	its border in same color.
+	its border in same color.<br>
 	Note that it tries to just do a simple filled rectangle but since its parent (the root interactor)
 	set the clipping path with rounded rects, the upper left remains rounded</li>
 	<li>Blue rectangles (royal blue and dodger blue) are instances of DumbChild. They just fill
-	their entiring bounding rect with a color.</li>
-	<li>The red circle is actually a composite.  The Portole type masks its child, whatever it
-	is, with an arc. We use a the same DumbLeaf as before, but the masking removes
-	the part outside the boundary of Porthole.</li>
-	<li>The blue squares and red circle respond clicking by switching from filled
-	to stroked.  Note that the clipping rect of the porthole on the round object
-	is pretty clearly shown.</li>
-	<li>The clickable items respond to mouse focus in the sense that they only
-	perform their switch if you click and release within their bounds.</li>
+	their entiring bounding rect with a color.<br>
+	The blue rectangles respond to Click() so they only change if release inside their bounds
+	as well as mouse down inside their bounds.  They change from filled to stroked.</li>
+	<li>The icon in circle is actually a composite.  The Portole type masks its child, whatever it
+	is, with an arc. We use a the same IconLeaf as it's child, but the masking removes
+	the part outside the boundary of Porthole. <br> You can see that the icon is square
+	by looking at the HTML of this page and seeing the hidden icon at the bottom. It
+	needs to be in the page to be drawn but we hide it from the HTML viewer.</li>
+	<li>You can drag the icon around. It defaults to picking only itself,
+	not its children.  You may want to place it partially obscuring a blue rectangle
+	and observing the effect on the click behavior of the rectangle.</li>
+	<li> The squares with an X in it the upper and lower right demonstrate
+	how to override the "default draw" of the entire system--and it's a throwback
+	to an older time...</li>
+	<li>The squares with an X are "later" in the child list than the draggable
+	porthole so dragging the porthole appears to go "under" these interactors but
+	over the blue squares.</li>
 </ul>
 
 <!--note: the canvas' "true" height/width includes the margin+border+padding -->
-<canvas id="canvas" width="400" height="300">
+<canvas id="canvas" width="400" height="300" style="cursor: pointer;">
 Canvas not supported
 </canvas>
 
     <script src="tropical_support.js"></script>
     <script src="mydumbapp.js"></script>
+
+   <br/>
+   <img id="hudson" src="hudson.png" style="display:none;"/>
 </body>
 </html>

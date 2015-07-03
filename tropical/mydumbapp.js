@@ -3491,7 +3491,7 @@ $packages["syscall"] = (function() {
 	};
 	$pkg.ReadDirent = ReadDirent;
 	Sysctl = function(name) {
-		var $ptr, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, _tuple, buf, err, mib, n, n_ptr, name, value, x;
+		var $ptr, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, _tuple, buf, err, mib, n, name, nonAsciiName$4, value, x;
 		value = "";
 		err = $ifaceNil;
 		_tuple = nametomib(name); mib = _tuple[0]; err = _tuple[1];
@@ -3500,7 +3500,7 @@ $packages["syscall"] = (function() {
 			return [value, err];
 		}
 		n = 0;
-		err = sysctl(mib, ptrType.nil, (n_ptr || (n_ptr = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), ptrType.nil, 0);
+		err = sysctl(mib, ptrType.nil, (nonAsciiName$4 || (nonAsciiName$4 = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), ptrType.nil, 0);
 		if (!($interfaceIsEqual(err, $ifaceNil))) {
 			_tmp$2 = ""; _tmp$3 = err; value = _tmp$2; err = _tmp$3;
 			return [value, err];
@@ -3510,7 +3510,7 @@ $packages["syscall"] = (function() {
 			return [value, err];
 		}
 		buf = $makeSlice(sliceType, n);
-		err = sysctl(mib, $indexPtr(buf.$array, buf.$offset + 0, ptrType), (n_ptr || (n_ptr = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), ptrType.nil, 0);
+		err = sysctl(mib, $indexPtr(buf.$array, buf.$offset + 0, ptrType), (nonAsciiName$4 || (nonAsciiName$4 = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), ptrType.nil, 0);
 		if (!($interfaceIsEqual(err, $ifaceNil))) {
 			_tmp$6 = ""; _tmp$7 = err; value = _tmp$6; err = _tmp$7;
 			return [value, err];
@@ -3523,7 +3523,7 @@ $packages["syscall"] = (function() {
 	};
 	$pkg.Sysctl = Sysctl;
 	nametomib = function(name) {
-		var $ptr, _q, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tuple, buf, bytes$1, err, mib, n, n_ptr, name, p;
+		var $ptr, _q, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tuple, buf, bytes$1, err, mib, n, name, nonAsciiName$4, p;
 		mib = sliceType$4.nil;
 		err = $ifaceNil;
 		buf = $clone(arrayType$4.zero(), arrayType$4);
@@ -3534,7 +3534,7 @@ $packages["syscall"] = (function() {
 			_tmp = sliceType$4.nil; _tmp$1 = err; mib = _tmp; err = _tmp$1;
 			return [mib, err];
 		}
-		err = sysctl(new sliceType$4([0, 3]), p, (n_ptr || (n_ptr = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), $indexPtr(bytes$1.$array, bytes$1.$offset + 0, ptrType), (name.length >>> 0));
+		err = sysctl(new sliceType$4([0, 3]), p, (nonAsciiName$4 || (nonAsciiName$4 = new ptrType$10(function() { return n; }, function($v) { n = $v; }))), $indexPtr(bytes$1.$array, bytes$1.$offset + 0, ptrType), (name.length >>> 0));
 		if (!($interfaceIsEqual(err, $ifaceNil))) {
 			_tmp$2 = sliceType$4.nil; _tmp$3 = err; mib = _tmp$2; err = _tmp$3;
 			return [mib, err];
@@ -4152,7 +4152,7 @@ $packages["strings"] = (function() {
 	return $pkg;
 })();
 $packages["time"] = (function() {
-	var $pkg = {}, $init, errors, js, nosync, runtime, strings, syscall, ParseError, Time, Month, Weekday, Duration, Location, zone, zoneTrans, sliceType, sliceType$1, sliceType$2, ptrType, arrayType, sliceType$3, arrayType$1, arrayType$2, ptrType$1, ptrType$3, ptrType$6, std0x, longDayNames, shortDayNames, shortMonthNames, longMonthNames, atoiError, errBad, errLeadingInt, months, days, daysBefore, utcLoc, utcLoc_ptr, localLoc, localLoc_ptr, localOnce, zoneinfo, badData, zoneDirs, _tuple, _r, initLocal, startsWithLowerCase, nextStdChunk, match, lookup, appendUint, atoi, formatNano, quote, isDigit, getnum, cutspace, skip, Parse, parse, parseTimeZone, parseGMT, parseNanoseconds, leadingInt, absWeekday, absClock, fmtFrac, fmtInt, absDate, Unix, isLeap, norm, Date, div, FixedZone;
+	var $pkg = {}, $init, errors, js, nosync, runtime, strings, syscall, ParseError, Time, Month, Weekday, Duration, Location, zone, zoneTrans, sliceType, sliceType$1, sliceType$2, ptrType, arrayType, sliceType$3, arrayType$1, arrayType$2, ptrType$1, ptrType$3, ptrType$6, std0x, longDayNames, shortDayNames, shortMonthNames, longMonthNames, atoiError, errBad, errLeadingInt, months, days, daysBefore, utcLoc, nonAsciiName, localLoc, nonAsciiName$1, localOnce, zoneinfo, badData, zoneDirs, _tuple, _r, initLocal, startsWithLowerCase, nextStdChunk, match, lookup, appendUint, atoi, formatNano, quote, isDigit, getnum, cutspace, skip, Parse, parse, parseTimeZone, parseGMT, parseNanoseconds, leadingInt, absWeekday, absClock, fmtFrac, fmtInt, absDate, Unix, isLeap, norm, Date, div, FixedZone;
 	errors = $packages["errors"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	nosync = $packages["github.com/gopherjs/gopherjs/nosync"];
@@ -7203,7 +7203,7 @@ $packages["os"] = (function() {
 	return $pkg;
 })();
 $packages["strconv"] = (function() {
-	var $pkg = {}, $init, errors, math, utf8, NumError, decimal, leftCheat, extFloat, floatInfo, decimalSlice, sliceType$3, sliceType$4, sliceType$5, sliceType$6, ptrType, arrayType, arrayType$1, ptrType$1, arrayType$2, arrayType$3, arrayType$4, arrayType$5, arrayType$6, ptrType$2, ptrType$3, ptrType$4, optimize, leftcheats, smallPowersOfTen, powersOfTen, uint64pow10, float32info, float32info_ptr, float64info, float64info_ptr, isPrint16, isNotPrint16, isPrint32, isNotPrint32, shifts, syntaxError, rangeError, cutoff64, ParseUint, ParseInt, digitZero, trim, rightShift, prefixIsLessThan, leftShift, shouldRoundUp, frexp10Many, adjustLastDigitFixed, adjustLastDigit, AppendFloat, genericFtoa, bigFtoa, formatDigits, roundShortest, fmtE, fmtF, fmtB, max, FormatInt, Itoa, formatBits, quoteWith, Quote, QuoteToASCII, QuoteRune, AppendQuoteRune, QuoteRuneToASCII, AppendQuoteRuneToASCII, CanBackquote, unhex, UnquoteChar, Unquote, contains, bsearch16, bsearch32, IsPrint;
+	var $pkg = {}, $init, errors, math, utf8, NumError, decimal, leftCheat, extFloat, floatInfo, decimalSlice, sliceType$3, sliceType$4, sliceType$5, sliceType$6, ptrType, arrayType, arrayType$1, ptrType$1, arrayType$2, arrayType$3, arrayType$4, arrayType$5, arrayType$6, ptrType$2, ptrType$3, ptrType$4, optimize, leftcheats, smallPowersOfTen, powersOfTen, uint64pow10, float32info, nonAsciiName, float64info, nonAsciiName$1, isPrint16, isNotPrint16, isPrint32, isNotPrint32, shifts, syntaxError, rangeError, cutoff64, ParseUint, ParseInt, digitZero, trim, rightShift, prefixIsLessThan, leftShift, shouldRoundUp, frexp10Many, adjustLastDigitFixed, adjustLastDigit, AppendFloat, genericFtoa, bigFtoa, formatDigits, roundShortest, fmtE, fmtF, fmtB, max, FormatInt, Itoa, formatBits, quoteWith, Quote, QuoteToASCII, QuoteRune, AppendQuoteRune, QuoteRuneToASCII, AppendQuoteRuneToASCII, CanBackquote, unhex, UnquoteChar, Unquote, contains, bsearch16, bsearch32, IsPrint;
 	errors = $packages["errors"];
 	math = $packages["math"];
 	utf8 = $packages["unicode/utf8"];
@@ -7921,7 +7921,7 @@ $packages["strconv"] = (function() {
 		return exp10;
 	};
 	extFloat.ptr.prototype.FixedDecimal = function(d, n) {
-		var $ptr, _q, _q$1, _tmp, _tmp$1, _tuple, buf, d, digit, exp10, f, fraction, i, i$1, i$2, integer, integerDigits, n, nd, needed, nonAsciiName, ok, pos, pow, pow10, rest, shift, v, v1, x, x$1, x$10, x$11, x$12, x$13, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
+		var $ptr, _q, _q$1, _tmp, _tmp$1, _tuple, buf, d, digit, exp10, f, fraction, i, i$1, i$2, integer, integerDigits, n, nd, needed, nonAsciiName$2, ok, pos, pow, pow10, rest, shift, v, v1, x, x$1, x$10, x$11, x$12, x$13, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
 		f = this;
 		if ((x = f.mant, (x.$high === 0 && x.$low === 0))) {
 			d.nd = 0;
@@ -7937,7 +7937,7 @@ $packages["strconv"] = (function() {
 		shift = (-f.exp >>> 0);
 		integer = ($shiftRightUint64(f.mant, shift).$low >>> 0);
 		fraction = (x$1 = f.mant, x$2 = $shiftLeft64(new $Uint64(0, integer), shift), new $Uint64(x$1.$high - x$2.$high, x$1.$low - x$2.$low));
-		nonAsciiName = new $Uint64(0, 1);
+		nonAsciiName$2 = new $Uint64(0, 1);
 		needed = n;
 		integerDigits = 0;
 		pow10 = new $Uint64(0, 1);
@@ -7987,8 +7987,8 @@ $packages["strconv"] = (function() {
 			while (true) {
 				if (!(needed > 0)) { break; }
 				fraction = $mul64(fraction, (new $Uint64(0, 10)));
-				nonAsciiName = $mul64(nonAsciiName, (new $Uint64(0, 10)));
-				if ((x$8 = $mul64(new $Uint64(0, 2), nonAsciiName), x$9 = $shiftLeft64(new $Uint64(0, 1), shift), (x$8.$high > x$9.$high || (x$8.$high === x$9.$high && x$8.$low > x$9.$low)))) {
+				nonAsciiName$2 = $mul64(nonAsciiName$2, (new $Uint64(0, 10)));
+				if ((x$8 = $mul64(new $Uint64(0, 2), nonAsciiName$2), x$9 = $shiftLeft64(new $Uint64(0, 1), shift), (x$8.$high > x$9.$high || (x$8.$high === x$9.$high && x$8.$low > x$9.$low)))) {
 					return false;
 				}
 				digit = $shiftRightUint64(fraction, shift);
@@ -7999,7 +7999,7 @@ $packages["strconv"] = (function() {
 			}
 			d.nd = nd;
 		}
-		ok = adjustLastDigitFixed(d, (x$12 = $shiftLeft64(new $Uint64(0, rest), shift), new $Uint64(x$12.$high | fraction.$high, (x$12.$low | fraction.$low) >>> 0)), pow10, shift, nonAsciiName);
+		ok = adjustLastDigitFixed(d, (x$12 = $shiftLeft64(new $Uint64(0, rest), shift), new $Uint64(x$12.$high | fraction.$high, (x$12.$low | fraction.$low) >>> 0)), pow10, shift, nonAsciiName$2);
 		if (!ok) {
 			return false;
 		}
@@ -8015,18 +8015,18 @@ $packages["strconv"] = (function() {
 		return true;
 	};
 	extFloat.prototype.FixedDecimal = function(d, n) { return this.$val.FixedDecimal(d, n); };
-	adjustLastDigitFixed = function(d, num, den, shift, nonAsciiName) {
-		var $ptr, d, den, i, nonAsciiName, num, shift, x, x$1, x$10, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
+	adjustLastDigitFixed = function(d, num, den, shift, nonAsciiName$2) {
+		var $ptr, d, den, i, nonAsciiName$2, num, shift, x, x$1, x$10, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
 		if ((x = $shiftLeft64(den, shift), (num.$high > x.$high || (num.$high === x.$high && num.$low > x.$low)))) {
 			$panic(new $String("strconv: num > den<<shift in adjustLastDigitFixed"));
 		}
-		if ((x$1 = $mul64(new $Uint64(0, 2), nonAsciiName), x$2 = $shiftLeft64(den, shift), (x$1.$high > x$2.$high || (x$1.$high === x$2.$high && x$1.$low > x$2.$low)))) {
+		if ((x$1 = $mul64(new $Uint64(0, 2), nonAsciiName$2), x$2 = $shiftLeft64(den, shift), (x$1.$high > x$2.$high || (x$1.$high === x$2.$high && x$1.$low > x$2.$low)))) {
 			$panic(new $String("strconv: \xCE\xB5 > (den<<shift)/2"));
 		}
-		if ((x$3 = $mul64(new $Uint64(0, 2), (new $Uint64(num.$high + nonAsciiName.$high, num.$low + nonAsciiName.$low))), x$4 = $shiftLeft64(den, shift), (x$3.$high < x$4.$high || (x$3.$high === x$4.$high && x$3.$low < x$4.$low)))) {
+		if ((x$3 = $mul64(new $Uint64(0, 2), (new $Uint64(num.$high + nonAsciiName$2.$high, num.$low + nonAsciiName$2.$low))), x$4 = $shiftLeft64(den, shift), (x$3.$high < x$4.$high || (x$3.$high === x$4.$high && x$3.$low < x$4.$low)))) {
 			return true;
 		}
-		if ((x$5 = $mul64(new $Uint64(0, 2), (new $Uint64(num.$high - nonAsciiName.$high, num.$low - nonAsciiName.$low))), x$6 = $shiftLeft64(den, shift), (x$5.$high > x$6.$high || (x$5.$high === x$6.$high && x$5.$low > x$6.$low)))) {
+		if ((x$5 = $mul64(new $Uint64(0, 2), (new $Uint64(num.$high - nonAsciiName$2.$high, num.$low - nonAsciiName$2.$low))), x$6 = $shiftLeft64(den, shift), (x$5.$high > x$6.$high || (x$5.$high === x$6.$high && x$5.$low > x$6.$low)))) {
 			i = d.nd - 1 >> 0;
 			while (true) {
 				if (!(i >= 0)) { break; }
@@ -9511,7 +9511,7 @@ $packages["reflect"] = (function() {
 		kindType.rtype = rt;
 	};
 	newStringPtr = function(strObj) {
-		var $ptr, _entry, _key, _tuple, c, ok, ptr, str, strObj, str_ptr;
+		var $ptr, _entry, _key, _tuple, c, nonAsciiName, ok, ptr, str, strObj;
 		c = $clone(new structType$5.ptr(), structType$5);
 		c.str = strObj;
 		str = c.str;
@@ -9520,7 +9520,7 @@ $packages["reflect"] = (function() {
 		}
 		_tuple = (_entry = stringPtrMap[$String.keyFor(str)], _entry !== undefined ? [_entry.v, true] : [ptrType$5.nil, false]); ptr = _tuple[0]; ok = _tuple[1];
 		if (!ok) {
-			ptr = (str_ptr || (str_ptr = new ptrType$5(function() { return str; }, function($v) { str = $v; })));
+			ptr = (nonAsciiName || (nonAsciiName = new ptrType$5(function() { return str; }, function($v) { str = $v; })));
 			_key = str; (stringPtrMap || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: ptr };
 		}
 		return ptr;
@@ -15414,12 +15414,15 @@ $packages["fmt"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/iansmith/tropical"] = (function() {
-	var $pkg = {}, $init, fmt, PickList, EventType, Event, Mouser, Coords, TreeManipulator, Interactor, RootInteractor, DrawsSelf, DrawsChildren, PicksSelf, Canvas, sliceType, sliceType$1;
+	var $pkg = {}, $init, fmt, PickList, EventType, Event, MousePolicy, MouseMonitor, Clicker, Dragger, Coords, TreeManipulator, Interactor, RootInteractor, DrawsSelf, DrawsChildren, PicksSelf, Canvas, sliceType, sliceType$1;
 	fmt = $packages["fmt"];
 	PickList = $pkg.PickList = $newType(8, $kindInterface, "tropical.PickList", "PickList", "github.com/iansmith/tropical", null);
 	EventType = $pkg.EventType = $newType(4, $kindInt, "tropical.EventType", "EventType", "github.com/iansmith/tropical", null);
 	Event = $pkg.Event = $newType(8, $kindInterface, "tropical.Event", "Event", "github.com/iansmith/tropical", null);
-	Mouser = $pkg.Mouser = $newType(8, $kindInterface, "tropical.Mouser", "Mouser", "github.com/iansmith/tropical", null);
+	MousePolicy = $pkg.MousePolicy = $newType(8, $kindInterface, "tropical.MousePolicy", "MousePolicy", "github.com/iansmith/tropical", null);
+	MouseMonitor = $pkg.MouseMonitor = $newType(8, $kindInterface, "tropical.MouseMonitor", "MouseMonitor", "github.com/iansmith/tropical", null);
+	Clicker = $pkg.Clicker = $newType(8, $kindInterface, "tropical.Clicker", "Clicker", "github.com/iansmith/tropical", null);
+	Dragger = $pkg.Dragger = $newType(8, $kindInterface, "tropical.Dragger", "Dragger", "github.com/iansmith/tropical", null);
 	Coords = $pkg.Coords = $newType(8, $kindInterface, "tropical.Coords", "Coords", "github.com/iansmith/tropical", null);
 	TreeManipulator = $pkg.TreeManipulator = $newType(8, $kindInterface, "tropical.TreeManipulator", "TreeManipulator", "github.com/iansmith/tropical", null);
 	Interactor = $pkg.Interactor = $newType(8, $kindInterface, "tropical.Interactor", "Interactor", "github.com/iansmith/tropical", null);
@@ -15458,7 +15461,10 @@ $packages["github.com/iansmith/tropical"] = (function() {
 	EventType.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 	PickList.init([{prop: "AddHit", name: "AddHit", pkg: "", typ: $funcType([Interactor], [sliceType$1], false)}, {prop: "Hits", name: "Hits", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}]);
 	Event.init([{prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Type", name: "Type", pkg: "", typ: $funcType([], [EventType], false)}, {prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}]);
-	Mouser.init([{prop: "MouseDown", name: "MouseDown", pkg: "", typ: $funcType([Event], [], false)}, {prop: "MouseMove", name: "MouseMove", pkg: "", typ: $funcType([Event], [], false)}, {prop: "MouseUp", name: "MouseUp", pkg: "", typ: $funcType([Event], [], false)}]);
+	MousePolicy.init([{prop: "Process", name: "Process", pkg: "", typ: $funcType([Event, Interactor], [], false)}, {prop: "Start", name: "Start", pkg: "", typ: $funcType([Event, Interactor], [$Bool], false)}]);
+	MouseMonitor.init([{prop: "MouseDown", name: "MouseDown", pkg: "", typ: $funcType([Event], [], false)}, {prop: "MouseMove", name: "MouseMove", pkg: "", typ: $funcType([Event], [], false)}, {prop: "MouseUp", name: "MouseUp", pkg: "", typ: $funcType([Event], [], false)}]);
+	Clicker.init([{prop: "Click", name: "Click", pkg: "", typ: $funcType([], [], false)}]);
+	Dragger.init([{prop: "Drag", name: "Drag", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "DragEnd", name: "DragEnd", pkg: "", typ: $funcType([], [], false)}, {prop: "DragStart", name: "DragStart", pkg: "", typ: $funcType([], [], false)}]);
 	Coords.init([{prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetHeight", name: "SetHeight", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetWidth", name: "SetWidth", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}]);
 	TreeManipulator.init([{prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([Interactor], [sliceType$1], false)}, {prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [Interactor], false)}]);
 	Interactor.init([{prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([Interactor], [sliceType$1], false)}, {prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [Interactor], false)}, {prop: "SetHeight", name: "SetHeight", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetWidth", name: "SetWidth", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}]);
@@ -15466,7 +15472,7 @@ $packages["github.com/iansmith/tropical"] = (function() {
 	DrawsSelf.init([{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([Canvas], [], false)}]);
 	DrawsChildren.init([{prop: "DrawChildren", name: "DrawChildren", pkg: "", typ: $funcType([Canvas], [], false)}]);
 	PicksSelf.init([{prop: "PickSelf", name: "PickSelf", pkg: "", typ: $funcType([Event, PickList], [$Bool], false)}]);
-	Canvas.init([{prop: "Arc", name: "Arc", pkg: "", typ: $funcType([$Int, $Int, $Int, $Float64, $Float64], [], false)}, {prop: "BeginPath", name: "BeginPath", pkg: "", typ: $funcType([], [], false)}, {prop: "Clip", name: "Clip", pkg: "", typ: $funcType([], [], false)}, {prop: "DrawLine", name: "DrawLine", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Fill", name: "Fill", pkg: "", typ: $funcType([], [], false)}, {prop: "FillRectangle", name: "FillRectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "LineTo", name: "LineTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "MoveTo", name: "MoveTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Rectangle", name: "Rectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Restore", name: "Restore", pkg: "", typ: $funcType([], [], false)}, {prop: "Save", name: "Save", pkg: "", typ: $funcType([], [], false)}, {prop: "SetFillColor", name: "SetFillColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "SetStrokeColor", name: "SetStrokeColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Stroke", name: "Stroke", pkg: "", typ: $funcType([], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}]);
+	Canvas.init([{prop: "Arc", name: "Arc", pkg: "", typ: $funcType([$Int, $Int, $Int, $Float64, $Float64], [], false)}, {prop: "BeginPath", name: "BeginPath", pkg: "", typ: $funcType([], [], false)}, {prop: "Clip", name: "Clip", pkg: "", typ: $funcType([], [], false)}, {prop: "DrawImageById", name: "DrawImageById", pkg: "", typ: $funcType([$String, $Int, $Int], [], false)}, {prop: "DrawLine", name: "DrawLine", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Fill", name: "Fill", pkg: "", typ: $funcType([], [], false)}, {prop: "FillRectangle", name: "FillRectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "LineTo", name: "LineTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "MoveTo", name: "MoveTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Rectangle", name: "Rectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Restore", name: "Restore", pkg: "", typ: $funcType([], [], false)}, {prop: "Save", name: "Save", pkg: "", typ: $funcType([], [], false)}, {prop: "SetFillColor", name: "SetFillColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "SetStrokeColor", name: "SetStrokeColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Stroke", name: "Stroke", pkg: "", typ: $funcType([], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -15477,7 +15483,7 @@ $packages["github.com/iansmith/tropical"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/iansmith/tropical/std"] = (function() {
-	var $pkg = {}, $init, fmt, js, tropical, strconv, strings, canvasImpl, Coords, Defaults, eventImpl, pickListImpl, DefaultMousePolicy, RootInteractor, PageCoords, TreeManipulator, SingleChild, sliceType, sliceType$1, ptrType, chanType, ptrType$1, funcType, ptrType$2, funcType$1, funcType$2, funcType$3, ptrType$3, ptrType$4, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, insetAmount, NewCanvas, NewCoords, ToLocalFromGlobal, init, DefaultDrawSelf, DefaultDrawChildren, DefaultStartDimensions, DefaultPickSelf, newEventImpl, NewPickList, NewDefaultMousePolicy, NewRootInteractor, NewPageCoords, parseBorderOrPanic, NewTreeManipulator, NewSingleChild;
+	var $pkg = {}, $init, fmt, js, tropical, strconv, strings, canvasImpl, Coords, Defaults, eventImpl, pickListImpl, DefaultMouseDispatch, ClickerPolicy, DraggerPolicy, RootInteractor, PageCoords, TreeManipulator, SingleChild, sliceType, sliceType$1, sliceType$2, sliceType$3, ptrType, chanType, ptrType$1, funcType, ptrType$2, funcType$1, funcType$2, funcType$3, ptrType$3, ptrType$4, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, ptrType$10, ptrType$11, insetAmount, NewCanvas, NewCoords, ToLocalFromGlobal, ToGlobalFromLocal, init, DefaultDrawSelf, DefaultDrawChildren, DefaultStartDimensions, DefaultPickSelf, newEventImpl, NewPickList, NewDefaultMouseDispatch, NewRootInteractor, NewPageCoords, parseBorderOrPanic, NewTreeManipulator, NewSingleChild;
 	fmt = $packages["fmt"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	tropical = $packages["github.com/iansmith/tropical"];
@@ -15545,15 +15551,35 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		}
 		this.hits = hits_;
 	});
-	DefaultMousePolicy = $pkg.DefaultMousePolicy = $newType(0, $kindStruct, "std.DefaultMousePolicy", "DefaultMousePolicy", "github.com/iansmith/tropical/std", function(focus_, asInteractor_) {
+	DefaultMouseDispatch = $pkg.DefaultMouseDispatch = $newType(0, $kindStruct, "std.DefaultMouseDispatch", "DefaultMouseDispatch", "github.com/iansmith/tropical/std", function(focusPolicy_, focusedInteractor_, FocusPolicies_, Monitors_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.focus = $ifaceNil;
-			this.asInteractor = $ifaceNil;
+			this.focusPolicy = $ifaceNil;
+			this.focusedInteractor = $ifaceNil;
+			this.FocusPolicies = sliceType$2.nil;
+			this.Monitors = sliceType$3.nil;
 			return;
 		}
-		this.focus = focus_;
-		this.asInteractor = asInteractor_;
+		this.focusPolicy = focusPolicy_;
+		this.focusedInteractor = focusedInteractor_;
+		this.FocusPolicies = FocusPolicies_;
+		this.Monitors = Monitors_;
+	});
+	ClickerPolicy = $pkg.ClickerPolicy = $newType(0, $kindStruct, "std.ClickerPolicy", "ClickerPolicy", "github.com/iansmith/tropical/std", function() {
+		this.$val = this;
+		if (arguments.length === 0) {
+			return;
+		}
+	});
+	DraggerPolicy = $pkg.DraggerPolicy = $newType(0, $kindStruct, "std.DraggerPolicy", "DraggerPolicy", "github.com/iansmith/tropical/std", function(startX_, startY_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.startX = 0;
+			this.startY = 0;
+			return;
+		}
+		this.startX = startX_;
+		this.startY = startY_;
 	});
 	RootInteractor = $pkg.RootInteractor = $newType(0, $kindStruct, "std.RootInteractor", "RootInteractor", "github.com/iansmith/tropical/std", function(Coords_, TreeManipulator_, c_, fillColor_, eventChan_) {
 		this.$val = this;
@@ -15601,6 +15627,8 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 	});
 	sliceType = $sliceType($emptyInterface);
 	sliceType$1 = $sliceType(tropical.Interactor);
+	sliceType$2 = $sliceType(tropical.MousePolicy);
+	sliceType$3 = $sliceType(tropical.MouseMonitor);
 	ptrType = $ptrType(canvasImpl);
 	chanType = $chanType(tropical.Event, false, false);
 	ptrType$1 = $ptrType(js.Object);
@@ -15611,11 +15639,13 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 	funcType$3 = $funcType([tropical.Interactor, tropical.Event, tropical.PickList], [$Bool], false);
 	ptrType$3 = $ptrType(eventImpl);
 	ptrType$4 = $ptrType(pickListImpl);
-	ptrType$5 = $ptrType(DefaultMousePolicy);
-	ptrType$6 = $ptrType(RootInteractor);
-	ptrType$7 = $ptrType(PageCoords);
-	ptrType$8 = $ptrType(TreeManipulator);
-	ptrType$9 = $ptrType(SingleChild);
+	ptrType$5 = $ptrType(DefaultMouseDispatch);
+	ptrType$6 = $ptrType(ClickerPolicy);
+	ptrType$7 = $ptrType(DraggerPolicy);
+	ptrType$8 = $ptrType(RootInteractor);
+	ptrType$9 = $ptrType(PageCoords);
+	ptrType$10 = $ptrType(TreeManipulator);
+	ptrType$11 = $ptrType(SingleChild);
 	NewCanvas = function(elementName) {
 		var $ptr, _r, ctx, elem, elementName, result, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; ctx = $f.ctx; elem = $f.elem; elementName = $f.elementName; result = $f.result; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -15736,7 +15766,7 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 	canvasImpl.ptr.prototype.SetFillColor = function(rgbish) {
 		var $ptr, c, rgbish;
 		c = this;
-		c.context.setFillColor($externalize(rgbish, $String));
+		c.context.fillStyle = $externalize(rgbish, $String);
 	};
 	canvasImpl.prototype.SetFillColor = function(rgbish) { return this.$val.SetFillColor(rgbish); };
 	canvasImpl.ptr.prototype.SetStrokeColor = function(rgbish) {
@@ -15745,6 +15775,13 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		c.context.strokeStyle = $externalize(rgbish, $String);
 	};
 	canvasImpl.prototype.SetStrokeColor = function(rgbish) { return this.$val.SetStrokeColor(rgbish); };
+	canvasImpl.ptr.prototype.DrawImageById = function(id, x, y) {
+		var $ptr, c, id, img, x, y;
+		c = this;
+		img = $global.document.getElementById($externalize(id, $String));
+		c.context.drawImage(img, x, y);
+	};
+	canvasImpl.prototype.DrawImageById = function(id, x, y) { return this.$val.DrawImageById(id, x, y); };
 	canvasImpl.ptr.prototype.Arc = function(x, y, radius, startAngle, finishAngle) {
 		var $ptr, c, finishAngle, radius, startAngle, x, y;
 		c = this;
@@ -15846,13 +15883,39 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: ToLocalFromGlobal }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f.curr = curr; $f.event = event; $f.i = i; $f.parentChain = parentChain; $f.wanted = wanted; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	$pkg.ToLocalFromGlobal = ToLocalFromGlobal;
+	ToGlobalFromLocal = function(start, event) {
+		var $ptr, _arg, _arg$1, _r, _r$1, _r$2, curr, event, i, parentChain, start, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _arg = $f._arg; _arg$1 = $f._arg$1; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; curr = $f.curr; event = $f.event; i = $f.i; parentChain = $f.parentChain; start = $f.start; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		parentChain = new sliceType$1([]);
+		curr = start;
+		/* while (true) { */ case 1:
+			if ($interfaceIsEqual(curr, $ifaceNil)) {
+				/* break; */ $s = 2; continue;
+			}
+			parentChain = $append(parentChain, curr);
+			_r = curr.Parent(); /* */ $s = 3; case 3: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+			curr = _r;
+		/* } */ $s = 1; continue; case 2:
+		i = 0;
+		/* while (true) { */ case 4:
+			/* if (!(i < (parentChain.$length - 1 >> 0))) { break; } */ if(!(i < (parentChain.$length - 1 >> 0))) { $s = 5; continue; }
+			_r$1 = ((i < 0 || i >= parentChain.$length) ? $throwRuntimeError("index out of range") : parentChain.$array[parentChain.$offset + i]).X(); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_arg = -_r$1;
+			_r$2 = ((i < 0 || i >= parentChain.$length) ? $throwRuntimeError("index out of range") : parentChain.$array[parentChain.$offset + i]).Y(); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_arg$1 = -_r$2;
+			$r = event.Translate(_arg, _arg$1); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			i = i + (1) >> 0;
+		/* } */ $s = 4; continue; case 5:
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: ToGlobalFromLocal }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f.curr = curr; $f.event = event; $f.i = i; $f.parentChain = parentChain; $f.start = start; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	$pkg.ToGlobalFromLocal = ToGlobalFromLocal;
 	init = function() {
 		var $ptr;
 		$pkg.Default.DrawSelf = DefaultDrawSelf;
 		$pkg.Default.DrawChildren = DefaultDrawChildren;
 		$pkg.Default.StartDimensions = DefaultStartDimensions;
 		$pkg.Default.PickSelf = DefaultPickSelf;
-		$pkg.MousePolicy = NewDefaultMousePolicy();
+		$pkg.MouseDispatch = NewDefaultMouseDispatch();
 	};
 	DefaultDrawSelf = function(self, c) {
 		var $ptr, _r, _tuple, c, dc, ok, self, $s, $r;
@@ -15917,8 +15980,8 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 	};
 	$pkg.DefaultStartDimensions = DefaultStartDimensions;
 	DefaultPickSelf = function(self, e, p) {
-		var $ptr, _i, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _ref, _tuple, _v, _v$1, child, childX, childY, e, ok, p, picks, self, x, y, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _i = $f._i; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; _ref = $f._ref; _tuple = $f._tuple; _v = $f._v; _v$1 = $f._v$1; child = $f.child; childX = $f.childX; childY = $f.childY; e = $f.e; ok = $f.ok; p = $f.p; picks = $f.picks; self = $f.self; x = $f.x; y = $f.y; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var $ptr, _i, _i$1, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _ref, _ref$1, _tuple, _v, _v$1, child, child$1, childX, childY, e, ok, p, picks, rev, self, x, y, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _i = $f._i; _i$1 = $f._i$1; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; _ref = $f._ref; _ref$1 = $f._ref$1; _tuple = $f._tuple; _v = $f._v; _v$1 = $f._v$1; child = $f.child; child$1 = $f.child$1; childX = $f.childX; childY = $f.childY; e = $f.e; ok = $f.ok; p = $f.p; picks = $f.picks; rev = $f.rev; self = $f.self; x = $f.x; y = $f.y; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		_r = e.X(); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		x = _r;
 		_r$1 = e.Y(); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
@@ -15934,39 +15997,48 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		/* if (_v) { */ case 3:
 			return false;
 		/* } */ case 4:
+		rev = new sliceType$1([]);
 		_r$4 = self.Children(); /* */ $s = 9; case 9: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 		_ref = _r$4;
 		_i = 0;
 		/* while (true) { */ case 10:
 			/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 11; continue; }
 			child = ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]);
-			_r$5 = child.X(); /* */ $s = 12; case 12: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			childX = _r$5;
-			_r$6 = child.Y(); /* */ $s = 13; case 13: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			childY = _r$6;
-			$r = e.Translate(childX, childY); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_tuple = $assertType(child, tropical.PicksSelf, true); picks = _tuple[0]; ok = _tuple[1];
-			/* */ if (!ok) { $s = 15; continue; }
-			/* */ $s = 16; continue;
-			/* if (!ok) { */ case 15:
-				_r$7 = $pkg.Default.PickSelf(child, e, p); /* */ $s = 18; case 18: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-				_r$7;
-				$s = 17; continue;
-			/* } else { */ case 16:
-				_r$8 = picks.PickSelf(e, p); /* */ $s = 19; case 19: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-				_r$8;
-			/* } */ case 17:
-			$r = e.Translate(-childX, -childY); /* */ $s = 20; case 20: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			rev = $appendSlice(new sliceType$1([child]), rev);
 			_i++;
 		/* } */ $s = 10; continue; case 11:
-		/* */ if (!($interfaceIsEqual(p, $ifaceNil))) { $s = 21; continue; }
-		/* */ $s = 22; continue;
-		/* if (!($interfaceIsEqual(p, $ifaceNil))) { */ case 21:
-			_r$9 = p.AddHit(self); /* */ $s = 23; case 23: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+		_ref$1 = rev;
+		_i$1 = 0;
+		/* while (true) { */ case 12:
+			/* if (!(_i$1 < _ref$1.$length)) { break; } */ if(!(_i$1 < _ref$1.$length)) { $s = 13; continue; }
+			child$1 = ((_i$1 < 0 || _i$1 >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i$1]);
+			_r$5 = child$1.X(); /* */ $s = 14; case 14: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			childX = _r$5;
+			_r$6 = child$1.Y(); /* */ $s = 15; case 15: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			childY = _r$6;
+			$r = e.Translate(childX, childY); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_tuple = $assertType(child$1, tropical.PicksSelf, true); picks = _tuple[0]; ok = _tuple[1];
+			/* */ if (!ok) { $s = 17; continue; }
+			/* */ $s = 18; continue;
+			/* if (!ok) { */ case 17:
+				_r$7 = $pkg.Default.PickSelf(child$1, e, p); /* */ $s = 20; case 20: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+				_r$7;
+				$s = 19; continue;
+			/* } else { */ case 18:
+				_r$8 = picks.PickSelf(e, p); /* */ $s = 21; case 21: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+				_r$8;
+			/* } */ case 19:
+			$r = e.Translate(-childX, -childY); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_i$1++;
+		/* } */ $s = 12; continue; case 13:
+		/* */ if (!($interfaceIsEqual(p, $ifaceNil))) { $s = 23; continue; }
+		/* */ $s = 24; continue;
+		/* if (!($interfaceIsEqual(p, $ifaceNil))) { */ case 23:
+			_r$9 = p.AddHit(self); /* */ $s = 25; case 25: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 			_r$9;
-		/* } */ case 22:
+		/* } */ case 24:
 		return true;
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DefaultPickSelf }; } $f.$ptr = $ptr; $f._i = _i; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f._ref = _ref; $f._tuple = _tuple; $f._v = _v; $f._v$1 = _v$1; $f.child = child; $f.childX = childX; $f.childY = childY; $f.e = e; $f.ok = ok; $f.p = p; $f.picks = picks; $f.self = self; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DefaultPickSelf }; } $f.$ptr = $ptr; $f._i = _i; $f._i$1 = _i$1; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f._ref = _ref; $f._ref$1 = _ref$1; $f._tuple = _tuple; $f._v = _v; $f._v$1 = _v$1; $f.child = child; $f.child$1 = child$1; $f.childX = childX; $f.childY = childY; $f.e = e; $f.ok = ok; $f.p = p; $f.picks = picks; $f.rev = rev; $f.self = self; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	$pkg.DefaultPickSelf = DefaultPickSelf;
 	eventImpl.ptr.prototype.Type = function() {
@@ -16022,72 +16094,206 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		return p.hits;
 	};
 	pickListImpl.prototype.AddHit = function(i) { return this.$val.AddHit(i); };
-	NewDefaultMousePolicy = function() {
+	NewDefaultMouseDispatch = function() {
 		var $ptr;
-		return new DefaultMousePolicy.ptr($ifaceNil, $ifaceNil);
+		return new DefaultMouseDispatch.ptr($ifaceNil, $ifaceNil, new sliceType$2([new DraggerPolicy.ptr(0, 0), new ClickerPolicy.ptr()]), new sliceType$3([]));
 	};
-	$pkg.NewDefaultMousePolicy = NewDefaultMousePolicy;
-	DefaultMousePolicy.ptr.prototype.Process = function(event, root) {
-		var $ptr, _i, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _ref, _ref$1, _tuple, d, event, list, m, ok, picked, root, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _i = $f._i; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _ref = $f._ref; _ref$1 = $f._ref$1; _tuple = $f._tuple; d = $f.d; event = $f.event; list = $f.list; m = $f.m; ok = $f.ok; picked = $f.picked; root = $f.root; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+	$pkg.NewDefaultMouseDispatch = NewDefaultMouseDispatch;
+	ClickerPolicy.ptr.prototype.Start = function(event, target) {
+		var $ptr, _r, _tuple, _v, event, m, ok, target, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _tuple = $f._tuple; _v = $f._v; event = $f.event; m = $f.m; ok = $f.ok; target = $f.target; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		m = this;
+		_tuple = $assertType(target, tropical.Clicker, true); ok = _tuple[1];
+		if (!(ok)) { _v = false; $s = 1; continue s; }
+		_r = event.Type(); /* */ $s = 2; case 2: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_v = _r === 2; case 1:
+		return _v;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: ClickerPolicy.ptr.prototype.Start }; } $f.$ptr = $ptr; $f._r = _r; $f._tuple = _tuple; $f._v = _v; $f.event = event; $f.m = m; $f.ok = ok; $f.target = target; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	ClickerPolicy.prototype.Start = function(event, target) { return this.$val.Start(event, target); };
+	ClickerPolicy.ptr.prototype.Process = function(event, target) {
+		var $ptr, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _ref, _v, _v$1, _v$2, event, focus, m, target, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _ref = $f._ref; _v = $f._v; _v$1 = $f._v$1; _v$2 = $f._v$2; event = $f.event; focus = $f.focus; m = $f.m; target = $f.target; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		m = this;
+		focus = $assertType(target, tropical.Clicker);
+		$r = ToLocalFromGlobal(target, event); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_r = event.Type(); /* */ $s = 2; case 2: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_ref = _r;
+		/* */ if (_ref === 2) { $s = 3; continue; }
+		/* */ if (_ref === 1) { $s = 4; continue; }
+		/* */ if (_ref === 0) { $s = 5; continue; }
+		/* */ $s = 6; continue;
+		/* switch (0) { default: if (_ref === 2) { */ case 3:
+			$s = 7; continue;
+		/* } else if (_ref === 1) { */ case 4:
+			_r$1 = event.X(); /* */ $s = 13; case 13: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			if (_r$1 < 0) { _v$2 = true; $s = 12; continue s; }
+			_r$2 = event.Y(); /* */ $s = 14; case 14: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_v$2 = _r$2 < 0; case 12:
+			if (_v$2) { _v$1 = true; $s = 11; continue s; }
+			_r$3 = event.X(); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$4 = target.Width(); /* */ $s = 16; case 16: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_v$1 = _r$3 >= _r$4; case 11:
+			if (_v$1) { _v = true; $s = 10; continue s; }
+			_r$5 = event.Y(); /* */ $s = 17; case 17: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$6 = target.Height(); /* */ $s = 18; case 18: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_v = _r$5 >= _r$6; case 10:
+			/* */ if (_v) { $s = 8; continue; }
+			/* */ $s = 9; continue;
+			/* if (_v) { */ case 8:
+				/* break; */ $s = 7; continue;
+			/* } */ case 9:
+			$r = focus.Click(); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = 7; continue;
+		/* } else if (_ref === 0) { */ case 5:
+			$s = 7; continue;
+		/* } else { */ case 6:
+			_r$7 = event.Type(); /* */ $s = 20; case 20: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			_r$8 = new tropical.EventType(_r$7).String(); /* */ $s = 21; case 21: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			console.log("clickerpolicy: unexpected event type ", _r$8, "ignoring");
+		/* } } */ case 7:
+		$r = ToGlobalFromLocal(target, event); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: ClickerPolicy.ptr.prototype.Process }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._ref = _ref; $f._v = _v; $f._v$1 = _v$1; $f._v$2 = _v$2; $f.event = event; $f.focus = focus; $f.m = m; $f.target = target; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	ClickerPolicy.prototype.Process = function(event, target) { return this.$val.Process(event, target); };
+	DraggerPolicy.ptr.prototype.Process = function(event, target) {
+		var $ptr, _r, _r$1, _r$2, _r$3, _r$4, _ref, d, diffX, diffY, event, focus, target, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _ref = $f._ref; d = $f.d; diffX = $f.diffX; diffY = $f.diffY; event = $f.event; focus = $f.focus; target = $f.target; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		d = this;
-		/* */ if (!($interfaceIsEqual(d.focus, $ifaceNil))) { $s = 1; continue; }
+		focus = $assertType(target, tropical.Dragger);
+		_r = event.X(); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		diffX = _r - d.startX >> 0;
+		_r$1 = event.Y(); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		diffY = _r$1 - d.startY >> 0;
+		_r$2 = event.Type(); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+		_ref = _r$2;
+		/* */ if (_ref === 2) { $s = 4; continue; }
+		/* */ if (_ref === 1) { $s = 5; continue; }
+		/* */ if (_ref === 0) { $s = 6; continue; }
+		/* */ $s = 7; continue;
+		/* if (_ref === 2) { */ case 4:
+			$r = focus.DragStart(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = focus.Drag(diffX, diffY); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = 8; continue;
+		/* } else if (_ref === 1) { */ case 5:
+			$r = focus.Drag(diffX, diffY); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = focus.DragEnd(); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = 8; continue;
+		/* } else if (_ref === 0) { */ case 6:
+			$r = focus.Drag(diffX, diffY); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = 8; continue;
+		/* } else { */ case 7:
+			_r$3 = event.Type(); /* */ $s = 14; case 14: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$4 = new tropical.EventType(_r$3).String(); /* */ $s = 15; case 15: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			console.log("draggerpolicy: unexpected event type ", _r$4, "ignoring");
+		/* } */ case 8:
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DraggerPolicy.ptr.prototype.Process }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._ref = _ref; $f.d = d; $f.diffX = diffX; $f.diffY = diffY; $f.event = event; $f.focus = focus; $f.target = target; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	DraggerPolicy.prototype.Process = function(event, target) { return this.$val.Process(event, target); };
+	DraggerPolicy.ptr.prototype.Start = function(event, target) {
+		var $ptr, _r, _r$1, _r$2, _tuple, _v, d, event, ok, target, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _tuple = $f._tuple; _v = $f._v; d = $f.d; event = $f.event; ok = $f.ok; target = $f.target; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		d = this;
+		_tuple = $assertType(target, tropical.Dragger, true); ok = _tuple[1];
+		if (!(ok)) { _v = false; $s = 3; continue s; }
+		_r = event.Type(); /* */ $s = 4; case 4: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_v = _r === 2; case 3:
+		/* */ if (_v) { $s = 1; continue; }
 		/* */ $s = 2; continue;
-		/* if (!($interfaceIsEqual(d.focus, $ifaceNil))) { */ case 1:
-			$r = ToLocalFromGlobal(d.asInteractor, event); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r = event.Type(); /* */ $s = 4; case 4: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
-			_ref = _r;
-			/* */ if (_ref === 1) { $s = 5; continue; }
-			/* */ if (_ref === 0) { $s = 6; continue; }
-			/* */ $s = 7; continue;
-			/* if (_ref === 1) { */ case 5:
-				$r = d.focus.MouseUp(event); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				d.focus = $ifaceNil;
-				d.asInteractor = $ifaceNil;
-				$s = 8; continue;
-			/* } else if (_ref === 0) { */ case 6:
-				$r = d.focus.MouseMove(event); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				$s = 8; continue;
-			/* } else { */ case 7:
-				_r$1 = event.Type(); /* */ $s = 11; case 11: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-				_r$2 = new tropical.EventType(_r$1).String(); /* */ $s = 12; case 12: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-				console.log("unexpected event type ", _r$2, "ignoring");
-			/* } */ case 8:
+		/* if (_v) { */ case 1:
+			_r$1 = event.X(); /* */ $s = 5; case 5: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			d.startX = _r$1;
+			_r$2 = event.Y(); /* */ $s = 6; case 6: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			d.startY = _r$2;
+			return true;
+		/* } */ case 2:
+		return false;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DraggerPolicy.ptr.prototype.Start }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._tuple = _tuple; $f._v = _v; $f.d = d; $f.event = event; $f.ok = ok; $f.target = target; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	DraggerPolicy.prototype.Start = function(event, target) { return this.$val.Start(event, target); };
+	DefaultMouseDispatch.ptr.prototype.Process = function(event, root) {
+		var $ptr, _i, _i$1, _i$2, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _ref, _ref$1, _ref$2, _ref$3, candidate, d, event, list, mon, picked, root, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _i = $f._i; _i$1 = $f._i$1; _i$2 = $f._i$2; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _ref = $f._ref; _ref$1 = $f._ref$1; _ref$2 = $f._ref$2; _ref$3 = $f._ref$3; candidate = $f.candidate; d = $f.d; event = $f.event; list = $f.list; mon = $f.mon; picked = $f.picked; root = $f.root; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		d = this;
+		/* */ if (!($interfaceIsEqual(d.focusedInteractor, $ifaceNil))) { $s = 1; continue; }
+		/* */ $s = 2; continue;
+		/* if (!($interfaceIsEqual(d.focusedInteractor, $ifaceNil))) { */ case 1:
+			/* */ if (!($interfaceIsEqual(d.focusedInteractor, $ifaceNil))) { $s = 3; continue; }
+			/* */ $s = 4; continue;
+			/* if (!($interfaceIsEqual(d.focusedInteractor, $ifaceNil))) { */ case 3:
+				$r = d.focusPolicy.Process(event, d.focusedInteractor); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				_r = event.Type(); /* */ $s = 8; case 8: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+				/* */ if (_r === 1) { $s = 6; continue; }
+				/* */ $s = 7; continue;
+				/* if (_r === 1) { */ case 6:
+					d.focusPolicy = $ifaceNil;
+				/* } */ case 7:
+			/* } */ case 4:
+			_r$1 = event.Type(); /* */ $s = 11; case 11: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (_r$1 === 1) { $s = 9; continue; }
+			/* */ $s = 10; continue;
+			/* if (_r$1 === 1) { */ case 9:
+				d.focusedInteractor = $ifaceNil;
+			/* } */ case 10:
 			return;
 		/* } */ case 2:
-		_r$3 = event.Type(); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-		/* */ if (!((_r$3 === 2))) { $s = 13; continue; }
-		/* */ $s = 14; continue;
-		/* if (!((_r$3 === 2))) { */ case 13:
-			_r$4 = event.Type(); /* */ $s = 16; case 16: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			_r$5 = new tropical.EventType(_r$4).String(); /* */ $s = 17; case 17: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			console.log("not bothering with mouse event", _r$5);
-			return;
-		/* } */ case 14:
-		_r$6 = root.Pick(event); /* */ $s = 18; case 18: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-		list = _r$6;
-		_r$7 = list.Hits(); /* */ $s = 19; case 19: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-		_ref$1 = _r$7;
+		_r$2 = root.Pick(event); /* */ $s = 12; case 12: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+		list = _r$2;
+		_r$3 = list.Hits(); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+		_ref = _r$3;
 		_i = 0;
-		/* while (true) { */ case 20:
-			/* if (!(_i < _ref$1.$length)) { break; } */ if(!(_i < _ref$1.$length)) { $s = 21; continue; }
-			picked = ((_i < 0 || _i >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i]);
-			_tuple = $assertType(picked, tropical.Mouser, true); m = _tuple[0]; ok = _tuple[1];
-			/* */ if (!ok) { $s = 22; continue; }
-			/* */ $s = 23; continue;
-			/* if (!ok) { */ case 22:
-				_i++;
-				/* continue; */ $s = 20; continue;
-			/* } */ case 23:
-			$r = ToLocalFromGlobal(picked, event); /* */ $s = 24; case 24: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = m.MouseDown(event); /* */ $s = 25; case 25: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			d.focus = m;
-			d.asInteractor = picked;
+		/* while (true) { */ case 14:
+			/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 15; continue; }
+			picked = ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]);
+			_ref$1 = d.FocusPolicies;
+			_i$1 = 0;
+			/* while (true) { */ case 16:
+				/* if (!(_i$1 < _ref$1.$length)) { break; } */ if(!(_i$1 < _ref$1.$length)) { $s = 17; continue; }
+				candidate = ((_i$1 < 0 || _i$1 >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i$1]);
+				_r$4 = candidate.Start(event, picked); /* */ $s = 20; case 20: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+				/* */ if (_r$4) { $s = 18; continue; }
+				/* */ $s = 19; continue;
+				/* if (_r$4) { */ case 18:
+					d.focusedInteractor = picked;
+					d.focusPolicy = candidate;
+					$r = d.focusPolicy.Process(event, picked); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = ToGlobalFromLocal(picked, event); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* break outer; */ $s = 15; continue s;
+				/* } */ case 19:
+				_i$1++;
+			/* } */ $s = 16; continue; case 17:
 			_i++;
-		/* } */ $s = 20; continue; case 21:
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DefaultMousePolicy.ptr.prototype.Process }; } $f.$ptr = $ptr; $f._i = _i; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._ref = _ref; $f._ref$1 = _ref$1; $f._tuple = _tuple; $f.d = d; $f.event = event; $f.list = list; $f.m = m; $f.ok = ok; $f.picked = picked; $f.root = root; $f.$s = $s; $f.$r = $r; return $f;
+		/* } */ $s = 14; continue; case 15:
+		_ref$2 = d.Monitors;
+		_i$2 = 0;
+		/* while (true) { */ case 23:
+			/* if (!(_i$2 < _ref$2.$length)) { break; } */ if(!(_i$2 < _ref$2.$length)) { $s = 24; continue; }
+			mon = ((_i$2 < 0 || _i$2 >= _ref$2.$length) ? $throwRuntimeError("index out of range") : _ref$2.$array[_ref$2.$offset + _i$2]);
+			_r$5 = event.Type(); /* */ $s = 25; case 25: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_ref$3 = _r$5;
+			/* */ if (_ref$3 === 2) { $s = 26; continue; }
+			/* */ if (_ref$3 === 1) { $s = 27; continue; }
+			/* */ if (_ref$3 === 0) { $s = 28; continue; }
+			/* */ $s = 29; continue;
+			/* if (_ref$3 === 2) { */ case 26:
+				$r = mon.MouseDown(event); /* */ $s = 31; case 31: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				$s = 30; continue;
+			/* } else if (_ref$3 === 1) { */ case 27:
+				$r = mon.MouseUp(event); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				$s = 30; continue;
+			/* } else if (_ref$3 === 0) { */ case 28:
+				$r = mon.MouseMove(event); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				$s = 30; continue;
+			/* } else { */ case 29:
+				_r$6 = event.Type(); /* */ $s = 34; case 34: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+				_r$7 = new tropical.EventType(_r$6).String(); /* */ $s = 35; case 35: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+				console.log("monitor: unexpected event type ", _r$7, "ignoring");
+			/* } */ case 30:
+			_i$2++;
+		/* } */ $s = 23; continue; case 24:
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DefaultMouseDispatch.ptr.prototype.Process }; } $f.$ptr = $ptr; $f._i = _i; $f._i$1 = _i$1; $f._i$2 = _i$2; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._ref = _ref; $f._ref$1 = _ref$1; $f._ref$2 = _ref$2; $f._ref$3 = _ref$3; $f.candidate = candidate; $f.d = d; $f.event = event; $f.list = list; $f.mon = mon; $f.picked = picked; $f.root = root; $f.$s = $s; $f.$r = $r; return $f;
 	};
-	DefaultMousePolicy.prototype.Process = function(event, root) { return this.$val.Process(event, root); };
+	DefaultMouseDispatch.prototype.Process = function(event, root) { return this.$val.Process(event, root); };
 	NewRootInteractor = function(htmlId, fillColor, child) {
 		var $ptr, _r, _r$1, c, child, fillColor, htmlId, result, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; c = $f.c; child = $f.child; fillColor = $f.fillColor; htmlId = $f.htmlId; result = $f.result; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -16144,6 +16350,14 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: RootInteractor.ptr.prototype.fromPageToMyCoords }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f.pageX = pageX; $f.pageY = pageY; $f.r = r; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	RootInteractor.prototype.fromPageToMyCoords = function(pageX, pageY) { return this.$val.fromPageToMyCoords(pageX, pageY); };
+	RootInteractor.ptr.prototype.ToGlobal = function(origX, origY) {
+		var $ptr, origX, origY, r, x, y;
+		r = this;
+		x = origX - insetAmount >> 0;
+		y = origY - insetAmount >> 0;
+		return [x, y];
+	};
+	RootInteractor.prototype.ToGlobal = function(origX, origY) { return this.$val.ToGlobal(origX, origY); };
 	RootInteractor.ptr.prototype.Draw = function() {
 		var $ptr, _r, _r$1, _r$2, _tuple, children, d, h, ok, r, radius, w, x, y, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _tuple = $f._tuple; children = $f.children; d = $f.d; h = $f.h; ok = $f.ok; r = $f.r; radius = $f.radius; w = $f.w; x = $f.x; y = $f.y; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -16221,6 +16435,7 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 			_r$7 = p.PickSelf(event, pl); /* */ $s = 14; case 14: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			_r$7;
 		/* } */ case 12:
+		$r = event.Translate(-insetAmount, -insetAmount); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		return pl;
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: RootInteractor.ptr.prototype.Pick }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._tuple = _tuple; $f.child = child; $f.event = event; $f.inDrawingArea = inDrawingArea; $f.ok = ok; $f.p = p; $f.pl = pl; $f.r = r; $f.trueHeight = trueHeight; $f.trueWidth = trueWidth; $f.trueX = trueX; $f.trueY = trueY; $f.x = x; $f.$s = $s; $f.$r = $r; return $f;
 	};
@@ -16406,21 +16621,25 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		return s.parent;
 	};
 	SingleChild.prototype.Parent = function() { return this.$val.Parent(); };
-	ptrType.methods = [{prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Context", name: "Context", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "Element", name: "Element", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "FillRectangle", name: "FillRectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "DrawLine", name: "DrawLine", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "MoveTo", name: "MoveTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "LineTo", name: "LineTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Save", name: "Save", pkg: "", typ: $funcType([], [], false)}, {prop: "Fill", name: "Fill", pkg: "", typ: $funcType([], [], false)}, {prop: "Stroke", name: "Stroke", pkg: "", typ: $funcType([], [], false)}, {prop: "Restore", name: "Restore", pkg: "", typ: $funcType([], [], false)}, {prop: "BeginPath", name: "BeginPath", pkg: "", typ: $funcType([], [], false)}, {prop: "Rectangle", name: "Rectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Clip", name: "Clip", pkg: "", typ: $funcType([], [], false)}, {prop: "SetFillColor", name: "SetFillColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "SetStrokeColor", name: "SetStrokeColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Arc", name: "Arc", pkg: "", typ: $funcType([$Int, $Int, $Int, $Float64, $Float64], [], false)}];
+	ptrType.methods = [{prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Context", name: "Context", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "Element", name: "Element", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "FillRectangle", name: "FillRectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "DrawLine", name: "DrawLine", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "MoveTo", name: "MoveTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "LineTo", name: "LineTo", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Save", name: "Save", pkg: "", typ: $funcType([], [], false)}, {prop: "Fill", name: "Fill", pkg: "", typ: $funcType([], [], false)}, {prop: "Stroke", name: "Stroke", pkg: "", typ: $funcType([], [], false)}, {prop: "Restore", name: "Restore", pkg: "", typ: $funcType([], [], false)}, {prop: "BeginPath", name: "BeginPath", pkg: "", typ: $funcType([], [], false)}, {prop: "Rectangle", name: "Rectangle", pkg: "", typ: $funcType([$Int, $Int, $Int, $Int], [], false)}, {prop: "Clip", name: "Clip", pkg: "", typ: $funcType([], [], false)}, {prop: "SetFillColor", name: "SetFillColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "SetStrokeColor", name: "SetStrokeColor", pkg: "", typ: $funcType([$String], [], false)}, {prop: "DrawImageById", name: "DrawImageById", pkg: "", typ: $funcType([$String, $Int, $Int], [], false)}, {prop: "Arc", name: "Arc", pkg: "", typ: $funcType([$Int, $Int, $Int, $Float64, $Float64], [], false)}];
 	ptrType$2.methods = [{prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetWidth", name: "SetWidth", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetHeight", name: "SetHeight", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "ToLocalFromParent", name: "ToLocalFromParent", pkg: "", typ: $funcType([tropical.Interactor, tropical.Event], [], false)}, {prop: "ToParentFromLocal", name: "ToParentFromLocal", pkg: "", typ: $funcType([tropical.Interactor, tropical.Event], [], false)}];
 	ptrType$3.methods = [{prop: "Type", name: "Type", pkg: "", typ: $funcType([], [tropical.EventType], false)}, {prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([$Int, $Int], [], false)}];
 	ptrType$4.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Hits", name: "Hits", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "AddHit", name: "AddHit", pkg: "", typ: $funcType([tropical.Interactor], [sliceType$1], false)}];
 	ptrType$5.methods = [{prop: "Process", name: "Process", pkg: "", typ: $funcType([tropical.Event, tropical.RootInteractor], [], false)}];
-	ptrType$6.methods = [{prop: "ProcessMouseEvent", name: "ProcessMouseEvent", pkg: "", typ: $funcType([tropical.Event], [], false)}, {prop: "fromPageToMyCoords", name: "fromPageToMyCoords", pkg: "github.com/iansmith/tropical/std", typ: $funcType([$Int, $Int], [$Int, $Int], false)}, {prop: "Draw", name: "Draw", pkg: "", typ: $funcType([], [], false)}, {prop: "Pick", name: "Pick", pkg: "", typ: $funcType([tropical.Event], [tropical.PickList], false)}];
-	ptrType$7.methods = [{prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetWidth", name: "SetWidth", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetHeight", name: "SetHeight", pkg: "", typ: $funcType([$Int], [], false)}];
-	ptrType$8.methods = [{prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([tropical.Interactor], [sliceType$1], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [tropical.Interactor], false)}];
-	ptrType$9.methods = [{prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([tropical.Interactor], [sliceType$1], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [tropical.Interactor], false)}];
+	ptrType$6.methods = [{prop: "Start", name: "Start", pkg: "", typ: $funcType([tropical.Event, tropical.Interactor], [$Bool], false)}, {prop: "Process", name: "Process", pkg: "", typ: $funcType([tropical.Event, tropical.Interactor], [], false)}];
+	ptrType$7.methods = [{prop: "Process", name: "Process", pkg: "", typ: $funcType([tropical.Event, tropical.Interactor], [], false)}, {prop: "Start", name: "Start", pkg: "", typ: $funcType([tropical.Event, tropical.Interactor], [$Bool], false)}];
+	ptrType$8.methods = [{prop: "ProcessMouseEvent", name: "ProcessMouseEvent", pkg: "", typ: $funcType([tropical.Event], [], false)}, {prop: "fromPageToMyCoords", name: "fromPageToMyCoords", pkg: "github.com/iansmith/tropical/std", typ: $funcType([$Int, $Int], [$Int, $Int], false)}, {prop: "ToGlobal", name: "ToGlobal", pkg: "", typ: $funcType([$Int, $Int], [$Int, $Int], false)}, {prop: "Draw", name: "Draw", pkg: "", typ: $funcType([], [], false)}, {prop: "Pick", name: "Pick", pkg: "", typ: $funcType([tropical.Event], [tropical.PickList], false)}];
+	ptrType$9.methods = [{prop: "X", name: "X", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Y", name: "Y", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Width", name: "Width", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Height", name: "Height", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetWidth", name: "SetWidth", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "SetHeight", name: "SetHeight", pkg: "", typ: $funcType([$Int], [], false)}];
+	ptrType$10.methods = [{prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([tropical.Interactor], [sliceType$1], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [tropical.Interactor], false)}];
+	ptrType$11.methods = [{prop: "Children", name: "Children", pkg: "", typ: $funcType([], [sliceType$1], false)}, {prop: "AppendChild", name: "AppendChild", pkg: "", typ: $funcType([tropical.Interactor], [sliceType$1], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [tropical.Interactor], false)}];
 	canvasImpl.init([{prop: "element", name: "element", pkg: "github.com/iansmith/tropical/std", typ: ptrType$1, tag: ""}, {prop: "context", name: "context", pkg: "github.com/iansmith/tropical/std", typ: ptrType$1, tag: ""}, {prop: "htmlWidth", name: "htmlWidth", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "htmlHeight", name: "htmlHeight", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}]);
 	Coords.init([{prop: "x", name: "x", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "y", name: "y", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "w", name: "w", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "h", name: "h", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}]);
 	Defaults.init([{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: funcType$1, tag: ""}, {prop: "DrawChildren", name: "DrawChildren", pkg: "", typ: funcType$1, tag: ""}, {prop: "StartDimensions", name: "StartDimensions", pkg: "", typ: funcType$2, tag: ""}, {prop: "PickSelf", name: "PickSelf", pkg: "", typ: funcType$3, tag: ""}]);
 	eventImpl.init([{prop: "t", name: "t", pkg: "github.com/iansmith/tropical/std", typ: tropical.EventType, tag: ""}, {prop: "x", name: "x", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "y", name: "y", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}]);
 	pickListImpl.init([{prop: "hits", name: "hits", pkg: "github.com/iansmith/tropical/std", typ: sliceType$1, tag: ""}]);
-	DefaultMousePolicy.init([{prop: "focus", name: "focus", pkg: "github.com/iansmith/tropical/std", typ: tropical.Mouser, tag: ""}, {prop: "asInteractor", name: "asInteractor", pkg: "github.com/iansmith/tropical/std", typ: tropical.Interactor, tag: ""}]);
+	DefaultMouseDispatch.init([{prop: "focusPolicy", name: "focusPolicy", pkg: "github.com/iansmith/tropical/std", typ: tropical.MousePolicy, tag: ""}, {prop: "focusedInteractor", name: "focusedInteractor", pkg: "github.com/iansmith/tropical/std", typ: tropical.Interactor, tag: ""}, {prop: "FocusPolicies", name: "FocusPolicies", pkg: "", typ: sliceType$2, tag: ""}, {prop: "Monitors", name: "Monitors", pkg: "", typ: sliceType$3, tag: ""}]);
+	ClickerPolicy.init([]);
+	DraggerPolicy.init([{prop: "startX", name: "startX", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}, {prop: "startY", name: "startY", pkg: "github.com/iansmith/tropical/std", typ: $Int, tag: ""}]);
 	RootInteractor.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}, {prop: "c", name: "c", pkg: "github.com/iansmith/tropical/std", typ: tropical.Canvas, tag: ""}, {prop: "fillColor", name: "fillColor", pkg: "github.com/iansmith/tropical/std", typ: $String, tag: ""}, {prop: "eventChan", name: "eventChan", pkg: "github.com/iansmith/tropical/std", typ: chanType, tag: ""}]);
 	PageCoords.init([{prop: "elem", name: "elem", pkg: "github.com/iansmith/tropical/std", typ: ptrType$1, tag: ""}]);
 	TreeManipulator.init([{prop: "parent", name: "parent", pkg: "github.com/iansmith/tropical/std", typ: tropical.Interactor, tag: ""}, {prop: "children", name: "children", pkg: "github.com/iansmith/tropical/std", typ: sliceType$1, tag: ""}]);
@@ -16433,7 +16652,7 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 		$r = tropical.$init(); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strconv.$init(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strings.$init(); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$pkg.MousePolicy = $ifaceNil;
+		$pkg.MouseDispatch = $ifaceNil;
 		$pkg.Default = new Defaults.ptr($throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError);
 		insetAmount = 5;
 		init();
@@ -16443,7 +16662,7 @@ $packages["github.com/iansmith/tropical/std"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/iansmith/mydumbapp"] = (function() {
-	var $pkg = {}, $init, fmt, js, tropical, std, math, DumbParent, DumbLeaf, Porthole, TrivialLeaf, ptrType, funcType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, portholeWidth, DebugDrawSelf, main, domReady, NewDumbParent, NewDumbLeaf, NewPorthole, NewTrivialLeaf;
+	var $pkg = {}, $init, fmt, js, tropical, std, math, DumbParent, DumbLeaf, Porthole, TrivialLeaf, IconLeaf, ptrType, funcType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, ptrType$5, portholeWidth, DebugDrawSelf, main, domReady, NewDumbParent, NewDumbLeaf, NewPorthole, NewTrivialLeaf, NewIconLeaf;
 	fmt = $packages["fmt"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	tropical = $packages["github.com/iansmith/tropical"];
@@ -16473,15 +16692,19 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		this.Coords = Coords_;
 		this.TreeManipulator = TreeManipulator_;
 	});
-	Porthole = $pkg.Porthole = $newType(0, $kindStruct, "main.Porthole", "Porthole", "github.com/iansmith/mydumbapp", function(Coords_, TreeManipulator_) {
+	Porthole = $pkg.Porthole = $newType(0, $kindStruct, "main.Porthole", "Porthole", "github.com/iansmith/mydumbapp", function(Coords_, TreeManipulator_, startDragX_, startDragY_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Coords = $ifaceNil;
 			this.TreeManipulator = $ifaceNil;
+			this.startDragX = 0;
+			this.startDragY = 0;
 			return;
 		}
 		this.Coords = Coords_;
 		this.TreeManipulator = TreeManipulator_;
+		this.startDragX = startDragX_;
+		this.startDragY = startDragY_;
 	});
 	TrivialLeaf = $pkg.TrivialLeaf = $newType(0, $kindStruct, "main.TrivialLeaf", "TrivialLeaf", "github.com/iansmith/mydumbapp", function(Coords_, TreeManipulator_) {
 		this.$val = this;
@@ -16493,27 +16716,54 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		this.Coords = Coords_;
 		this.TreeManipulator = TreeManipulator_;
 	});
+	IconLeaf = $pkg.IconLeaf = $newType(0, $kindStruct, "main.IconLeaf", "IconLeaf", "github.com/iansmith/mydumbapp", function(Coords_, TreeManipulator_, htmlId_, imageOffsetX_, imageOffsetY_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Coords = $ifaceNil;
+			this.TreeManipulator = $ifaceNil;
+			this.htmlId = "";
+			this.imageOffsetX = 0;
+			this.imageOffsetY = 0;
+			return;
+		}
+		this.Coords = Coords_;
+		this.TreeManipulator = TreeManipulator_;
+		this.htmlId = htmlId_;
+		this.imageOffsetX = imageOffsetX_;
+		this.imageOffsetY = imageOffsetY_;
+	});
 	ptrType = $ptrType(js.Object);
 	funcType = $funcType([ptrType], [], false);
 	ptrType$1 = $ptrType(std.RootInteractor);
 	ptrType$2 = $ptrType(DumbParent);
 	ptrType$3 = $ptrType(DumbLeaf);
 	ptrType$4 = $ptrType(Porthole);
+	ptrType$5 = $ptrType(IconLeaf);
 	DebugDrawSelf = function(i, canvas) {
-		var $ptr, _arg, _arg$1, _arg$2, _arg$3, _r, _r$1, _r$2, _r$3, canvas, i, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; canvas = $f.canvas; i = $f.i; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
-		$r = canvas.SetStrokeColor("cd5c5c"); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		_r = i.X(); /* */ $s = 2; case 2: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
-		_arg = _r;
-		_r$1 = i.Y(); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-		_arg$1 = _r$1;
-		_r$2 = i.Width(); /* */ $s = 4; case 4: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-		_arg$2 = _r$2;
-		_r$3 = i.Height(); /* */ $s = 5; case 5: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-		_arg$3 = _r$3;
-		$r = canvas.DrawLine(_arg, _arg$1, _arg$2, _arg$3); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = canvas.Stroke(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DebugDrawSelf }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f.canvas = canvas; $f.i = i; $f.$s = $s; $f.$r = $r; return $f;
+		var $ptr, _arg, _arg$1, _arg$2, _arg$3, _r, _r$1, _r$2, _r$3, canvas, h, i, w, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; canvas = $f.canvas; h = $f.h; i = $f.i; w = $f.w; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		$r = canvas.Save(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.SetStrokeColor("#000000"); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_r = i.Width(); /* */ $s = 3; case 3: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		w = _r;
+		_r$1 = i.Height(); /* */ $s = 4; case 4: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		h = _r$1;
+		_r$2 = i.X(); /* */ $s = 5; case 5: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+		_arg = _r$2;
+		_r$3 = i.Y(); /* */ $s = 6; case 6: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+		_arg$1 = _r$3;
+		_arg$2 = w;
+		_arg$3 = h;
+		$r = canvas.Rectangle(_arg, _arg$1, _arg$2, _arg$3); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.Stroke(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.MoveTo(0, 0); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.LineTo(w, h); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.Stroke(); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.MoveTo(w, 0); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.LineTo(0, h); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.Stroke(); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = canvas.Restore(); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DebugDrawSelf }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f.canvas = canvas; $f.h = h; $f.i = i; $f.w = w; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	$pkg.DebugDrawSelf = DebugDrawSelf;
 	main = function() {
@@ -16526,8 +16776,8 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		}), funcType));
 	};
 	domReady = function() {
-		var $ptr, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tuple, ch, parent, porthole, root, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _tuple = $f._tuple; ch = $f.ch; parent = $f.parent; porthole = $f.porthole; root = $f.root; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var $ptr, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tuple, ch, parent, porthole, root, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _tuple = $f._tuple; ch = $f.ch; parent = $f.parent; porthole = $f.porthole; root = $f.root; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		ch = [ch];
 		root = [root];
 		std.Default.DrawSelf = DebugDrawSelf;
@@ -16535,34 +16785,36 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		_tuple = _r; root[0] = _tuple[0]; ch[0] = _tuple[1];
 		_r$1 = NewDumbParent($assertType(root[0], ptrType$1)); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		parent = _r$1;
-		_r$2 = NewDumbLeaf(parent, "4169e1", 10, 20, 40, 50); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+		_r$2 = NewDumbLeaf(parent, "#4169e1", 10, 20, 40, 50); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		_r$2;
-		_r$3 = NewDumbLeaf(parent, "1e90ff", 120, 130, 20, 60); /* */ $s = 4; case 4: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+		_r$3 = NewDumbLeaf(parent, "#1e90ff", 120, 130, 20, 60); /* */ $s = 4; case 4: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 		_r$3;
 		_r$4 = NewPorthole(parent); /* */ $s = 5; case 5: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 		porthole = _r$4;
-		_r$5 = NewDumbLeaf(porthole, "cd5c5c", 0, 0, portholeWidth, portholeWidth); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+		_r$5 = NewIconLeaf(porthole, 0, 0, portholeWidth, portholeWidth, "hudson", 0, 0); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 		_r$5;
 		_r$6 = NewTrivialLeaf(parent, 275, 2, 32, 32); /* */ $s = 7; case 7: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 		_r$6;
-		$r = root[0].Draw(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_r$7 = NewTrivialLeaf(parent, 270, 260, 32, 32); /* */ $s = 8; case 8: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+		_r$7;
+		$r = root[0].Draw(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$go((function(ch, root) { return function $b() {
-			var $ptr, _r$7, _selection, event, $s, $r;
-			/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r$7 = $f._r$7; _selection = $f._selection; event = $f.event; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+			var $ptr, _r$8, _selection, event, $s, $r;
+			/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r$8 = $f._r$8; _selection = $f._selection; event = $f.event; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 			/* while (true) { */ case 1:
-				_r$7 = $select([[ch[0]]]); /* */ $s = 3; case 3: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-				_selection = _r$7;
+				_r$8 = $select([[ch[0]]]); /* */ $s = 3; case 3: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+				_selection = _r$8;
 				/* */ if (_selection[0] === 0) { $s = 4; continue; }
 				/* */ $s = 5; continue;
 				/* if (_selection[0] === 0) { */ case 4:
 					event = _selection[1][0];
-					$r = std.MousePolicy.Process(event, root[0]); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = std.MouseDispatch.Process(event, root[0]); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$r = root[0].Draw(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 5:
 			/* } */ $s = 1; continue; case 2:
-			/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: $b }; } $f.$ptr = $ptr; $f._r$7 = _r$7; $f._selection = _selection; $f.event = event; $f.$s = $s; $f.$r = $r; return $f;
+			/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: $b }; } $f.$ptr = $ptr; $f._r$8 = _r$8; $f._selection = _selection; $f.event = event; $f.$s = $s; $f.$r = $r; return $f;
 		}; })(ch, root), []);
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: domReady }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._tuple = _tuple; $f.ch = ch; $f.parent = parent; $f.porthole = porthole; $f.root = root; $f.$s = $s; $f.$r = $r; return $f;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: domReady }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._tuple = _tuple; $f.ch = ch; $f.parent = parent; $f.porthole = porthole; $f.root = root; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	NewDumbParent = function(root) {
 		var $ptr, _r, result, root, $s, $r;
@@ -16633,46 +16885,16 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DumbLeaf.ptr.prototype.DrawSelf }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f.c = c; $f.d = d; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	DumbLeaf.prototype.DrawSelf = function(c) { return this.$val.DrawSelf(c); };
-	DumbLeaf.ptr.prototype.MouseDown = function(event) {
-		var $ptr, d, event;
+	DumbLeaf.ptr.prototype.Click = function() {
+		var $ptr, d;
 		d = this;
-	};
-	DumbLeaf.prototype.MouseDown = function(event) { return this.$val.MouseDown(event); };
-	DumbLeaf.ptr.prototype.MouseMove = function(event) {
-		var $ptr, d, event;
-		d = this;
-	};
-	DumbLeaf.prototype.MouseMove = function(event) { return this.$val.MouseMove(event); };
-	DumbLeaf.ptr.prototype.MouseUp = function(event) {
-		var $ptr, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _v, _v$1, _v$2, d, event, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _v = $f._v; _v$1 = $f._v$1; _v$2 = $f._v$2; d = $f.d; event = $f.event; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
-		d = this;
-		_r = event.X(); /* */ $s = 6; case 6: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
-		if (_r < 0) { _v$2 = true; $s = 5; continue s; }
-		_r$1 = event.Y(); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-		_v$2 = _r$1 < 0; case 5:
-		if (_v$2) { _v$1 = true; $s = 4; continue s; }
-		_r$2 = event.X(); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-		_r$3 = d.Coords.Width(); /* */ $s = 9; case 9: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-		_v$1 = _r$2 >= _r$3; case 4:
-		if (_v$1) { _v = true; $s = 3; continue s; }
-		_r$4 = event.Y(); /* */ $s = 10; case 10: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-		_r$5 = d.Coords.Height(); /* */ $s = 11; case 11: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-		_v = _r$4 >= _r$5; case 3:
-		/* */ if (_v) { $s = 1; continue; }
-		/* */ $s = 2; continue;
-		/* if (_v) { */ case 1:
-			return;
-		/* } */ case 2:
-		console.log("toggling!");
 		d.stroke = !d.stroke;
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: DumbLeaf.ptr.prototype.MouseUp }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._v = _v; $f._v$1 = _v$1; $f._v$2 = _v$2; $f.d = d; $f.event = event; $f.$s = $s; $f.$r = $r; return $f;
 	};
-	DumbLeaf.prototype.MouseUp = function(event) { return this.$val.MouseUp(event); };
+	DumbLeaf.prototype.Click = function() { return this.$val.Click(); };
 	NewPorthole = function(parent) {
 		var $ptr, _r, parent, result, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; parent = $f.parent; result = $f.result; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
-		result = new Porthole.ptr(std.NewCoords(200, 160, portholeWidth, portholeWidth), std.NewSingleChild(parent));
+		result = new Porthole.ptr(std.NewCoords(200, 160, portholeWidth, portholeWidth), std.NewSingleChild(parent), 0, 0);
 		_r = parent.AppendChild(result); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		_r;
 		return result;
@@ -16698,9 +16920,34 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: Porthole.ptr.prototype.DrawSelf }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._q = _q; $f._q$1 = _q$1; $f._q$2 = _q$2; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f.c = c; $f.p = p; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Porthole.prototype.DrawSelf = function(c) { return this.$val.DrawSelf(c); };
+	Porthole.ptr.prototype.DragStart = function() {
+		var $ptr, _r, _r$1, p, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; _r$1 = $f._r$1; p = $f.p; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		p = this;
+		_r = p.Coords.X(); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		p.startDragX = _r;
+		_r$1 = p.Coords.Y(); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		p.startDragY = _r$1;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: Porthole.ptr.prototype.DragStart }; } $f.$ptr = $ptr; $f._r = _r; $f._r$1 = _r$1; $f.p = p; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	Porthole.prototype.DragStart = function() { return this.$val.DragStart(); };
+	Porthole.ptr.prototype.DragEnd = function() {
+		var $ptr, p;
+		p = this;
+	};
+	Porthole.prototype.DragEnd = function() { return this.$val.DragEnd(); };
+	Porthole.ptr.prototype.Drag = function(x, y) {
+		var $ptr, p, x, y, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; p = $f.p; x = $f.x; y = $f.y; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		p = this;
+		$r = p.Coords.SetX(p.startDragX + x >> 0); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = p.Coords.SetY(p.startDragY + y >> 0); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: Porthole.ptr.prototype.Drag }; } $f.$ptr = $ptr; $f.p = p; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	Porthole.prototype.Drag = function(x, y) { return this.$val.Drag(x, y); };
 	Porthole.ptr.prototype.PickSelf = function(e, pl) {
-		var $ptr, _arg, _arg$1, _arg$2, _arg$3, _q, _q$1, _q$2, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, centerX, centerY, child, dist, e, ok, p, picks, pl, x, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _q = $f._q; _q$1 = $f._q$1; _q$2 = $f._q$2; _r = $f._r; _r$1 = $f._r$1; _r$10 = $f._r$10; _r$11 = $f._r$11; _r$12 = $f._r$12; _r$13 = $f._r$13; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; _tuple = $f._tuple; centerX = $f.centerX; centerY = $f.centerY; child = $f.child; dist = $f.dist; e = $f.e; ok = $f.ok; p = $f.p; picks = $f.picks; pl = $f.pl; x = $f.x; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var $ptr, _q, _q$1, _q$2, _r, _r$1, _r$2, _r$3, _r$4, _r$5, centerX, centerY, dist, e, p, pl, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _q = $f._q; _q$1 = $f._q$1; _q$2 = $f._q$2; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; centerX = $f.centerX; centerY = $f.centerY; dist = $f.dist; e = $f.e; p = $f.p; pl = $f.pl; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		p = this;
 		_r = e.X(); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		_r$1 = p.Coords.Width(); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
@@ -16715,42 +16962,14 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		/* if (dist > (_q$2 = _r$4 / 2, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : $throwRuntimeError("integer divide by zero"))) { */ case 5:
 			return false;
 		/* } */ case 6:
-		_r$5 = p.TreeManipulator.Children(); /* */ $s = 10; case 10: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-		/* */ if (_r$5.$length > 0) { $s = 8; continue; }
+		/* */ if (!($interfaceIsEqual(pl, $ifaceNil))) { $s = 8; continue; }
 		/* */ $s = 9; continue;
-		/* if (_r$5.$length > 0) { */ case 8:
-			_r$6 = p.TreeManipulator.Children(); /* */ $s = 11; case 11: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			child = (x = _r$6, (0 >= x.$length ? $throwRuntimeError("index out of range") : x.$array[x.$offset + 0]));
-			_r$7 = child.X(); /* */ $s = 12; case 12: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-			_arg = _r$7;
-			_r$8 = child.Y(); /* */ $s = 13; case 13: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-			_arg$1 = _r$8;
-			$r = e.Translate(_arg, _arg$1); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_tuple = $assertType(child, tropical.PicksSelf, true); picks = _tuple[0]; ok = _tuple[1];
-			/* */ if (!ok) { $s = 15; continue; }
-			/* */ $s = 16; continue;
-			/* if (!ok) { */ case 15:
-				_r$9 = std.Default.PickSelf(child, e, pl); /* */ $s = 18; case 18: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-				_r$9;
-				$s = 17; continue;
-			/* } else { */ case 16:
-				_r$10 = picks.PickSelf(e, pl); /* */ $s = 19; case 19: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
-				_r$10;
-			/* } */ case 17:
-			_r$11 = child.X(); /* */ $s = 20; case 20: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
-			_arg$2 = -_r$11;
-			_r$12 = child.Y(); /* */ $s = 21; case 21: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
-			_arg$3 = -_r$12;
-			$r = e.Translate(_arg$2, _arg$3); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* if (!($interfaceIsEqual(pl, $ifaceNil))) { */ case 8:
+			_r$5 = pl.AddHit(p); /* */ $s = 10; case 10: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$5;
 		/* } */ case 9:
-		/* */ if (!($interfaceIsEqual(pl, $ifaceNil))) { $s = 23; continue; }
-		/* */ $s = 24; continue;
-		/* if (!($interfaceIsEqual(pl, $ifaceNil))) { */ case 23:
-			_r$13 = pl.AddHit(p); /* */ $s = 25; case 25: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
-			_r$13;
-		/* } */ case 24:
 		return true;
-		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: Porthole.ptr.prototype.PickSelf }; } $f.$ptr = $ptr; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._q = _q; $f._q$1 = _q$1; $f._q$2 = _q$2; $f._r = _r; $f._r$1 = _r$1; $f._r$10 = _r$10; $f._r$11 = _r$11; $f._r$12 = _r$12; $f._r$13 = _r$13; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f._tuple = _tuple; $f.centerX = centerX; $f.centerY = centerY; $f.child = child; $f.dist = dist; $f.e = e; $f.ok = ok; $f.p = p; $f.picks = picks; $f.pl = pl; $f.x = x; $f.$s = $s; $f.$r = $r; return $f;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: Porthole.ptr.prototype.PickSelf }; } $f.$ptr = $ptr; $f._q = _q; $f._q$1 = _q$1; $f._q$2 = _q$2; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f.centerX = centerX; $f.centerY = centerY; $f.dist = dist; $f.e = e; $f.p = p; $f.pl = pl; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Porthole.prototype.PickSelf = function(e, pl) { return this.$val.PickSelf(e, pl); };
 	NewTrivialLeaf = function(parent, x, y, w, h) {
@@ -16763,13 +16982,33 @@ $packages["github.com/iansmith/mydumbapp"] = (function() {
 		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: NewTrivialLeaf }; } $f.$ptr = $ptr; $f._r = _r; $f.h = h; $f.parent = parent; $f.result = result; $f.w = w; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	$pkg.NewTrivialLeaf = NewTrivialLeaf;
+	NewIconLeaf = function(parent, x, y, w, h, htmlId, offX, offY) {
+		var $ptr, _r, h, htmlId, offX, offY, parent, result, w, x, y, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; _r = $f._r; h = $f.h; htmlId = $f.htmlId; offX = $f.offX; offY = $f.offY; parent = $f.parent; result = $f.result; w = $f.w; x = $f.x; y = $f.y; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		result = new IconLeaf.ptr(std.NewCoords(x, y, w, h), std.NewTreeManipulator(parent), htmlId, offX, offY);
+		_r = parent.AppendChild(result); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_r;
+		return result;
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: NewIconLeaf }; } $f.$ptr = $ptr; $f._r = _r; $f.h = h; $f.htmlId = htmlId; $f.offX = offX; $f.offY = offY; $f.parent = parent; $f.result = result; $f.w = w; $f.x = x; $f.y = y; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	$pkg.NewIconLeaf = NewIconLeaf;
+	IconLeaf.ptr.prototype.DrawSelf = function(c) {
+		var $ptr, c, i, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $ptr = $f.$ptr; c = $f.c; i = $f.i; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		i = this;
+		$r = c.DrawImageById(i.htmlId, i.imageOffsetX, i.imageOffsetY); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* */ $s = -1; case -1: } return; } if ($f === undefined) { $f = { $blk: IconLeaf.ptr.prototype.DrawSelf }; } $f.$ptr = $ptr; $f.c = c; $f.i = i; $f.$s = $s; $f.$r = $r; return $f;
+	};
+	IconLeaf.prototype.DrawSelf = function(c) { return this.$val.DrawSelf(c); };
 	ptrType$2.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}];
-	ptrType$3.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}, {prop: "MouseDown", name: "MouseDown", pkg: "", typ: $funcType([tropical.Event], [], false)}, {prop: "MouseMove", name: "MouseMove", pkg: "", typ: $funcType([tropical.Event], [], false)}, {prop: "MouseUp", name: "MouseUp", pkg: "", typ: $funcType([tropical.Event], [], false)}];
-	ptrType$4.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}, {prop: "PickSelf", name: "PickSelf", pkg: "", typ: $funcType([tropical.Event, tropical.PickList], [$Bool], false)}];
+	ptrType$3.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}, {prop: "Click", name: "Click", pkg: "", typ: $funcType([], [], false)}];
+	ptrType$4.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}, {prop: "DragStart", name: "DragStart", pkg: "", typ: $funcType([], [], false)}, {prop: "DragEnd", name: "DragEnd", pkg: "", typ: $funcType([], [], false)}, {prop: "Drag", name: "Drag", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "PickSelf", name: "PickSelf", pkg: "", typ: $funcType([tropical.Event, tropical.PickList], [$Bool], false)}];
+	ptrType$5.methods = [{prop: "DrawSelf", name: "DrawSelf", pkg: "", typ: $funcType([tropical.Canvas], [], false)}];
 	DumbParent.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}]);
 	DumbLeaf.init([{prop: "stroke", name: "stroke", pkg: "github.com/iansmith/mydumbapp", typ: $Bool, tag: ""}, {prop: "color", name: "color", pkg: "github.com/iansmith/mydumbapp", typ: $String, tag: ""}, {prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}]);
-	Porthole.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}]);
+	Porthole.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}, {prop: "startDragX", name: "startDragX", pkg: "github.com/iansmith/mydumbapp", typ: $Int, tag: ""}, {prop: "startDragY", name: "startDragY", pkg: "github.com/iansmith/mydumbapp", typ: $Int, tag: ""}]);
 	TrivialLeaf.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}]);
+	IconLeaf.init([{prop: "Coords", name: "", pkg: "", typ: tropical.Coords, tag: ""}, {prop: "TreeManipulator", name: "", pkg: "", typ: tropical.TreeManipulator, tag: ""}, {prop: "htmlId", name: "htmlId", pkg: "github.com/iansmith/mydumbapp", typ: $String, tag: ""}, {prop: "imageOffsetX", name: "imageOffsetX", pkg: "github.com/iansmith/mydumbapp", typ: $Int, tag: ""}, {prop: "imageOffsetY", name: "imageOffsetY", pkg: "github.com/iansmith/mydumbapp", typ: $Int, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
